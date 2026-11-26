@@ -7,6 +7,10 @@ This HSL Color Shortcuts pack was designed especially for people who paint digit
 Changing hue, saturation, and lightness during the digital painting process can be a repetitive and tiring task for many artists. With that in mind, I created this pack of scripts that automate the job.
 
 ---
+## Practical examples
+Shadows, light, and tone variations, using only the shortcuts.
+
+https://github.com/user-attachments/assets/53bad512-ea02-42f3-94d9-e846296b1506
 
 ## What's in the pack
 
@@ -76,11 +80,6 @@ Grouping the shortcuts on neighboring keys makes them easier to remember:
 1. Pick a foreground color as you normally would: eyedropper, color picker, or swatches.
 2. Press the shortcuts to adjust it. The color swatch in the toolbar updates instantly.
 3. Keep painting with the new color.
-
-## Practical examples
-Shadows, light, and tone variations, using only the shortcuts.
-
-https://github.com/user-attachments/assets/53bad512-ea02-42f3-94d9-e846296b1506
 
 ---
 
