@@ -1,10 +1,10 @@
 # HSL Color Shortcuts for Photoshop
 
-**Adjust your brush color without taking your eyes off the canvas.**
+**Adjust your brush color without taking your brush cursor off the canvas.**
 
 This HSL Color Shortcuts pack was designed especially for people who paint digitally, illustrate, or retouch images and need small color variations all the time.
 
-Changing saturation, lightness, and hue during the digital painting process can be a repetitive and tiring task for many artists. With that in mind, I created this pack of scripts that automate the job.
+Changing hue, saturation, and lightness during the digital painting process can be a repetitive and tiring task for many artists. With that in mind, I created this pack of scripts that automate the job.
 
 ---
 
@@ -12,19 +12,20 @@ Changing saturation, lightness, and hue during the digital painting process can 
 
 | Script | What it does | Default step |
 |---|---|---|
-| `Cor - More_Saturation.jsx` | Increase color saturation | +5% |
-| `Cor - Less_Saturation.jsx` | Increase color saturation | −5% |
-| `Cor - More_Brightness.jsx` | Lightens the color (toward white) | +5% |
-| `Cor - Less_Brightness.jsx` | Darkens the color (toward black) | −5% |
-| `Cor - Matiz_forward.jsx` | Moves clock-wise on the color wheel (red → yellow → green → blue…) | +10° |
-| `Cor - Matiz_backward.jsx` | Moves backward around the color wheel | −10° |
+| `Hue - Increase.jsx` | Moves forward on the color wheel (red → yellow → green → blue…) | +5° |
+| `Hue - Decrease.jsx` | Moves backward around the color wheel | −5° |
+| `Saturation - Increase.jsx` | Increases color saturation | +5% |
+| `Saturation - Decrease.jsx` | Decreases color saturation | −5% |
+| `Lightness - Increase.jsx` | Lightens the color (toward white) | +5% |
+| `Lightness - Decrease.jsx` | Darkens the color (toward black) | −5% |
 
 ## Highlights
 
-- **Fast:** one shortcut, one change. Hold the key down for bigger adjustments.
+- **Fast:** one shortcut, one change.
 - **Precise:** each script changes only one thing. Hue changes without affecting saturation and lightness, and vice versa.
-- **Never loses the color:** if you push the color all the way to gray, black, or white and then come back, the original hue comes back with it.
-- **No accumulated drift:** values are stored precisely between presses, so going back and forth many times won't "muddy" the color.
+- **Never loses the color:** if you push the color all the way to gray, black, or white and then come back, the original hue and saturation come back with it, as long as Photoshop stays open.
+- **No accumulated drift:** values are stored precisely between presses, and the color is rounded only when it is applied, so going back and forth many times won't "muddy" the color.
+- **Safe:** the scripts only change the foreground color. They never touch your pixels, layers, selections, or document.
 - **Customizable:** you choose the step size for each script.
 - **Lightweight:** these are simple scripts. No plugins, panels, or anything extra to install.
 
@@ -57,10 +58,12 @@ Close and reopen Photoshop. The scripts will appear under **File › Scripts**.
 1. Open **Edit › Keyboard Shortcuts**.
 2. Under **Shortcuts For**, choose **Application Menus**.
 3. Expand **File** and scroll down to **Scripts**.
-4. Click a script, for example *Cor - Mais Saturacao*, and press the key combination you want to use.
+4. Click a script, for example *Saturation - Increase*, and press the key combination you want to use.
 5. Repeat for the other scripts and click **OK**.
 
 > **Watch out for conflicts:** Photoshop uses a lot of key combinations, including many with Ctrl and Ctrl+Alt (Cmd and Cmd+Option on Mac). If the combination you pick is already in use, the shortcuts window shows a **warning**. If you confirm anyway, the old function loses its shortcut. Especially avoid Ctrl+S (Save) and Ctrl+W (Close). Try a few combinations and keep one that doesn't show a warning.
+
+> **Don't see the scripts in that list?** Some Photoshop versions don't list them there. In that case, record an Action for each script (use **File › Scripts › Browse…** while recording), then give each Action a shortcut in its options.
 
 #### Suggested layout
 
@@ -68,9 +71,9 @@ Grouping the shortcuts on neighboring keys makes them easier to remember:
 
 | Action | Suggested key |
 |---|---|
-| Hue − / Hue + | Q / E |
-| Lightness + / − | W / S |
-| Saturation − / + | A / D |
+| Hue Decrease / Hue Increase | Q / E |
+| Lightness Increase / Lightness Decrease | W / S |
+| Saturation Decrease / Saturation Increase | A / D |
 
 Use these letters together with a modifier that's free in your Photoshop.
 
@@ -82,36 +85,36 @@ Use these letters together with a modifier that's free in your Photoshop.
 2. Press the shortcuts to adjust it. The color swatch in the toolbar updates instantly.
 3. Keep painting with the new color.
 
-**Practical examples**
+## Practical examples
+Shadows, light, and tone variations, using only the shortcuts.
 
-- *Shadow:* darken with Lightness − and nudge the hue a little toward blue/purple with Hue + or −.
-- *Light:* lighten with Lightness + and nudge the hue toward yellow.
-- *Skin, foliage, or fabric variation:* give Hue and Saturation one or two taps to create tones similar to the base color.
-
-**Good to know**
-
-- If the color is fully gray, black, or white, changing the hue won't show on screen, because there's no saturation to display it. The script still keeps track of the hue, and it will appear once you increase the saturation.
-- Changing the foreground color doesn't create steps in the History panel.
+https://github.com/user-attachments/assets/53bad512-ea02-42f3-94d9-e846296b1506
 
 ---
 
 ## Customization
 
-Each script has two settings at the top of the file. Open the `.jsx` in a plain text editor (Notepad, TextEdit in plain text mode, VS Code…):
+Each script has **one setting** at the top of the file. Open the `.jsx` in a plain text editor (Notepad, TextEdit in plain text mode, VS Code…):
 
 ```javascript
-var CANAL = "s";   // channel: "h" = hue (color), "s" = saturation, "l" = lightness
-var PASSO = 5;     // step: adjustment size per press. Negative decreases.
+var HUE_STEP = 5;          // in Hue scripts: degrees per press
+var SATURATION_STEP = 5;   // in Saturation scripts: percentage points per press
+var LIGHTNESS_STEP = 5;    // in Lightness scripts: percentage points per press
 ```
 
-- **PASSO (step):** how much each press changes.
+Each file contains only the line for its own channel.
+
+- **Step size:** how much each press changes.
   - Saturation and lightness: in percentage points, from 0 to 100. Use `2` for fine adjustments and `10` for large ones.
-  - Hue: in degrees, from 0 to 360. `10` gives 36 steps to go all the way around the color wheel.
-- **CANAL (channel):** which property the script changes. You normally don't need to change this.
+  - Hue: in degrees, from 0 to 360. `5` gives 72 steps to go all the way around the color wheel, and `10` gives 36.
+- **Direction:** each script has its own fixed direction (the file name tells you which). Always enter a positive number, or `0` for no change. Don't use negative numbers.
+- **Increase and Decrease are separate files:** if you want a different step, change it in both.
 
 Save the file. The change takes effect the next time the script runs, no need to restart Photoshop.
 
-> Want more than one step size, for example a fine and a coarse adjustment? Duplicate the file, give it a different name (like `Cor - Mais Saturacao (fino).jsx`), change `PASSO`, and assign it a different shortcut.
+If the value isn't a valid number, the script shows an error message and leaves your color untouched.
+
+> Want more than one step size, for example a fine and a coarse adjustment? Duplicate the file, give it a different name (like `Saturation - Increase (fine).jsx`), change the step, and assign it a different shortcut.
 
 ---
 
@@ -119,11 +122,18 @@ Save the file. The change takes effect the next time the script runs, no need to
 
 The scripts work in the **HSL** color model:
 
-- **H (hue):** the "color" itself, a position on the color wheel.
+- **H (hue):** the "color" itself, a position on the color wheel. It wraps around: going past 360° brings you back to 0°.
 - **S (saturation):** the intensity. 0% is gray, 100% is the pure color.
 - **L (lightness):** from 0% (black) to 100% (white), with the pure color at 50%.
 
 Photoshop's color picker uses **HSB** (brightness), which is similar but not the same. That's why the numbers you see in the picker may not exactly match the scripts' steps. This is expected.
+
+### Remembering the color
+
+Photoshop only stores the foreground color as RGB, so gray, black, and white don't carry any hue. To get around that, all six scripts share one small memory: the last color they produced, together with its exact hue, saturation, and lightness. On each press:
+
+- If the foreground color is still the one the scripts produced, they continue from the remembered values. This is what brings the hue back after a trip through gray.
+- If it's different, you picked something else, and they start from that color.
 
 ---
 
@@ -136,7 +146,10 @@ Make sure the files are in the `Presets\Scripts` folder of the **same version** 
 Another function may be using the same combination. Go back to *Edit › Keyboard Shortcuts* and choose a combination with no conflict warning.
 
 **An error message appears**
-Write down the error number and the line shown in the message. This helps track down the problem.
+During normal use the scripts show nothing. A message appears only when something goes wrong, for example an invalid step value in the file. Read the message, since it says what failed, and fix the setting if it points to one.
+
+**A message says the color was updated but the state could not be saved**
+The new color was applied correctly. Only the memory of its hue and saturation failed, so the next press may not recover a hue from gray. Picking the color again or pressing once more normally fixes it.
 
 **I want to uninstall**
 Delete the `.jsx` files from the `Presets\Scripts` folder and restart Photoshop.
