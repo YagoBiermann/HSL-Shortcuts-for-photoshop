@@ -71,10 +71,6 @@ Grouping the shortcuts on neighboring keys makes them easier to remember:
 | Lightness Increase / Lightness Decrease | W / S |
 | Saturation Decrease / Saturation Increase | A / D |
 
-Use these letters together with a modifier that's free in your Photoshop.
-
----
-
 ## How to use
 
 1. Pick a foreground color as you normally would: eyedropper, color picker, or swatches.
