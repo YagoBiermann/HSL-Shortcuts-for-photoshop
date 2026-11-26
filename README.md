@@ -61,10 +61,6 @@ Close and reopen Photoshop. The scripts will appear under **File › Scripts**.
 4. Click a script, for example *Saturation - Increase*, and press the key combination you want to use.
 5. Repeat for the other scripts and click **OK**.
 
-> **Watch out for conflicts:** Photoshop uses a lot of key combinations, including many with Ctrl and Ctrl+Alt (Cmd and Cmd+Option on Mac). If the combination you pick is already in use, the shortcuts window shows a **warning**. If you confirm anyway, the old function loses its shortcut. Especially avoid Ctrl+S (Save) and Ctrl+W (Close). Try a few combinations and keep one that doesn't show a warning.
-
-> **Don't see the scripts in that list?** Some Photoshop versions don't list them there. In that case, record an Action for each script (use **File › Scripts › Browse…** while recording), then give each Action a shortcut in its options.
-
 #### Suggested layout
 
 Grouping the shortcuts on neighboring keys makes them easier to remember:
